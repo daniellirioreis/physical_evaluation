@@ -5,6 +5,9 @@
   <div class="row-fluid"> 
     <div class="span6"><%= f.input :email, input_html: { class: 'span12'}%></div>
   </div>
+  <div class="row-fluid"> 
+    <div class="span3"><%= f.input :quant_dias_aviso_avaliacao, input_html: { class: 'span3'}%></div>
+  </div>
   <div class="form-actions">
     <%= f.button :submit, :class => "btn btn-success" %>
     <%= link_to 'Voltar', evaluators_path, :class => "btn"  %>
