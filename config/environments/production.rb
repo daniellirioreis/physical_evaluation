@@ -80,17 +80,5 @@ Rails.application.configure do
   config.serve_static_assets = true
   config.assets.compile = true
   config.assets.digest = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = {:host => 'localhost:3000'}
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: "587",
-    domain: "gmail.com",
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: "daniellirioreis@gmail.com",
-    password: "Daniel120188120186070384200903"    
-  }
-  
+    
 end
