@@ -9,3 +9,4 @@ pt-BR:
       company:
         name: "Nome"
         email: 'Email'
+        quant_dias_aviso_avaliacao: "Quantidade de dias para o aviso de avaliação há vencer"
