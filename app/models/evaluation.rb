@@ -23,6 +23,8 @@ class Evaluation < ActiveRecord::Base
   scope :by_expired, lambda { |date| where("evaluations.end_date <= ?", date) }
 
   scope :are_due, lambda { |date| where("evaluations.end_date = ?", date) }
+
+  scope :for_range_are_due, lambda { |date1, date2| where("evaluations.end_date >= ? and evaluations.end_date <= ?", date1, date2) }
   
   scope :sorted, -> { order(:id) }
 	

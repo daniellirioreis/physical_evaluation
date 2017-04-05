@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   
   resources :evaluations do 
   	get :send_email,  :on => :member
+  	get :search, :on => :collection
   end
 
   resources :evaluators do

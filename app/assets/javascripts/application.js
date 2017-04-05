@@ -52,6 +52,7 @@ $(function(){
 
 
 var maskSetup = function (html) {
+	html.find('text_field.date').inputmask("99/99/9999");    
     html.find('input.date').inputmask("99/99/9999");
     html.find('input.phone').inputmask("(99)9999-9999");
     html.find('input.zipcode').inputmask("99.999-999");

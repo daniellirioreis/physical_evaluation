@@ -42,13 +42,30 @@ class EvaluationsController < ApplicationController
     respond_with(@evaluation)
   end
 
-  def send_email
-    
+  def send_email    
     EvaluationMailer.notice(@evaluation).deliver_now
     flash[:notice] = 'Email enviando com sucesso.'    
-    redirect_to root_path
+    redirect_to root_path    
+  end
+  
+  def search
+    @evaluations = nil        
+    if params[:search] == "true"
+      unless params[:date_start].blank? 
+        unless params[:date_end].blank?
+          date_start = Date.parse(params[:date_start]) unless params[:date_start].nil? 
+          date_end = Date.parse(params[:date_end])    unless params[:date_start].nil?
+          @evaluations = Evaluation.for_range_are_due(date_start, date_end)      
+        else
+          flash[:warning] = 'Data final não pode ficar em branco.'              
+        end  
+      else
+        flash[:warning] = 'Data início não pode ficar em branco.'      
+      end
+    end
     
   end
+  
 
   def update      
     @evaluation.update(evaluation_params)
