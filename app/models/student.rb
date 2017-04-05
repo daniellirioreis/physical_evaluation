@@ -1,8 +1,8 @@
 class Student < ActiveRecord::Base
 
-	has_many :trainings
-	has_one :user
-	has_many :evaluations
+	has_many :trainings, dependent: :destroy
+	has_one :user, dependent: :destroy
+	has_many :evaluations, dependent: :destroy
 
 	validates :name, presence: true
 	validates :email, presence: true
@@ -65,18 +65,23 @@ class Student < ActiveRecord::Base
 	private
 	
 	def create_user
-		 user = User.find_by_email(email)
-    if user.present?
-      user.update_attributes(student_id: id )
-    else
-      if user = User.find_by_student_id(id)
-        user.update_attributes(email: email)
-      else
-        user = User.new(email: email, password: 12345678, password_confirmation: 12345678, student_id: id)
-        if user.save
+		 user = User.find_by_email_and_student_id(email, id)		 
+     unless user.present?
+       user = User.find_by_email(email)  		 
+
+       if user.present? 
+         errors.add(:email, "já em está em uso")          
         else
-        end
-      end      
-    end  	
+          if self.user.nil?
+            user = User.new(email: email, password: 12345678, password_confirmation: 12345678, student_id: id)
+            if user.save
+            else
+            end            
+          else
+            self.user.update_attributes(email: email)                  
+          end    
+        end 
+     end 
 	end
+	
 end
