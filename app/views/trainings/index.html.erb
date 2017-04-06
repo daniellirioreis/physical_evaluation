@@ -8,8 +8,10 @@
     <% end %>    
   </td>
 </table>
+<%= label_tag 'txtBusca', 'Pesquisar' %>
+<%= text_field_tag 'txtBusca', '', :class => 'span11 input-search', :id => 'txtBusca',:placeholder => "Buscar nesta lista", :alt =>"list_trainings" %>
  
-<table class="table">
+<table class="table list_trainings">
   <thead>
     <th>Data Início</th>
 		<th> Dia da Semana</th>
