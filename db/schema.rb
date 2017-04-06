@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403230303) do
+ActiveRecord::Schema.define(version: 20170406013005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(version: 20170403230303) do
     t.boolean  "cirugia"
     t.boolean  "jackson_e_pollock_5_dobras"
     t.integer  "company_id"
+    t.integer  "protocol"
   end
 
   add_index "evaluations", ["company_id"], name: "index_evaluations_on_company_id", using: :btree
@@ -248,8 +249,10 @@ ActiveRecord::Schema.define(version: 20170403230303) do
     t.datetime "updated_at",                          null: false
     t.integer  "student_id"
     t.integer  "evaluator_id"
+    t.integer  "coach_id"
   end
 
+  add_index "users", ["coach_id"], name: "index_users_on_coach_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
@@ -260,5 +263,6 @@ ActiveRecord::Schema.define(version: 20170403230303) do
   add_foreign_key "exercise_trainings", "trainings"
   add_foreign_key "trainings", "coaches"
   add_foreign_key "trainings", "students"
+  add_foreign_key "users", "coaches"
   add_foreign_key "users", "students", name: "users_student_id_fk"
 end
