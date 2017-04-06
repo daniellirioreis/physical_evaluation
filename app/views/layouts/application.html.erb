@@ -6,16 +6,15 @@
   </head>
   <body>
 		<%= render 'layouts/navegation_bar' %>
-		<% if current_user.student? %>
-			<%= render 'layouts/menu_student'%>
-		<% else %>
-			<% if current_user.evaluator? %>
+			<% if current_user.student? %>
+				<%= render 'layouts/menu_student'%>
+			<% elsif current_user.evaluator?  %>
 				<%= render 'layouts/menu_evaluator'%>			
-			<% else %>
-				<%= render 'layouts/menu'%>		
-			<% end %>
-		<% end %>
-		
+			<% elsif current_user.coach? %>
+				<%= render 'layouts/menu_coach'%>		
+			<%elsif%>
+					<%= render 'layouts/menu'%>							
+			<% end %>		
 		
 		<%= render 'layouts/messages' %>
 		<div class="container-fluid">

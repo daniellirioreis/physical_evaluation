@@ -1,7 +1,7 @@
 ﻿<% unless current_user.student?%>
 	<div class="row-fluid"> 
 		<div class="span6">
-			<h4 class="text-warning">Avaliações há vencer</h4>	
+			<h4 class="text-warning">Avaliações à vencer</h4>	
 			<table class="table table-bordered">
 				<%@evaluations.each do |e| %>
 				<tr>
@@ -21,7 +21,7 @@
 			</table>
 		</div>
 		<div class="span6">
-			<h4 class="text-error">Avaliações vencida</h4>	
+			<h4 class="text-error">Avaliações vencidas</h4>	
 			<table class="table table-bordered">
 				<%@evaluations_by_expired.each do |e| %>
 				<tr>
