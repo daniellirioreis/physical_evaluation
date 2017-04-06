@@ -1,4 +1,3 @@
-
 class Evaluation < ActiveRecord::Base
   attr_accessor :student_name
   attr_accessor :evaluator_name
@@ -6,6 +5,7 @@ class Evaluation < ActiveRecord::Base
   belongs_to :student
   belongs_to :evaluator
   belongs_to :company
+	has_enumeration_for :protocol, with: Protocol
   
   mount_uploader :front_photo,FrontPhotoUploader
   mount_uploader :side_photo, SidePhotoUploader
