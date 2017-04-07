@@ -39,6 +39,8 @@ class EvaluationsController < ApplicationController
   def create
     @evaluation = Evaluation.new(evaluation_params)
     @evaluation.save
+    ep = Evaluation.diferent_id(@evaluation.id, @evaluation.student_id)    
+    @evaluation.update_attribute(:evaluation_previous_id, ep.last.id) if ep.any?    
     respond_with(@evaluation)
   end
 

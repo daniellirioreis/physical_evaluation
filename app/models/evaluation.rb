@@ -5,6 +5,8 @@ class Evaluation < ActiveRecord::Base
   belongs_to :student
   belongs_to :evaluator
   belongs_to :company
+  belongs_to :evaluation_previous, :class_name => "Evaluation", :foreign_key => "evaluation_previous_id"
+
 	has_enumeration_for :protocol, with: Protocol
   
   mount_uploader :front_photo,FrontPhotoUploader
@@ -12,7 +14,7 @@ class Evaluation < ActiveRecord::Base
   mount_uploader :back_photo, BackPhotoUploader
   mount_uploader :front_contracted_photo, FrontContractedPhotoUploader
   mount_uploader :back_contracted_photo, BackContractedPhotoUploader
-  
+
   validates :student_name, :evaluator_name,:ccorp_altura, :ccorp_peso, :cintura, :quadril, :ccorp_gordura,  presence: true
   validates_date :end_date, after: :evaluation_date, :after_message => "Data de vencimento não pode ser menor ou igual que data da avaliação"
   
@@ -27,7 +29,9 @@ class Evaluation < ActiveRecord::Base
   scope :for_range_are_due, lambda { |date1, date2| where("evaluations.end_date >= ? and evaluations.end_date <= ?", date1, date2) }
   
   scope :sorted, -> { order(:id) }
+  scope :diferent_id, lambda { |id, student_id| where("evaluations.id !=? and evaluations.student_id = ?", id, student_id) }
 	
+  
   def to_s
 		
   end
