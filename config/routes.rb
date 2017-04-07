@@ -12,10 +12,11 @@ Rails.application.routes.draw do
   resources :evaluations do 
   	get :send_email,  :on => :member
   	get :search, :on => :collection
+  	get :print, :on => :member		
   end
 
   resources :evaluators do
-		get :autocomplete_evaluator_name, :on => :collection   
+		get :autocomplete_evaluator_name, :on => :collection   		
    end
   
   devise_for :users

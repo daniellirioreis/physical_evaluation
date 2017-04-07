@@ -4,18 +4,6 @@
 <% @g = @evaluation.classification_coporral_fat[:position] %>	
 <% @gt = @evaluation.classification_coporral_fat[:text] %>	
 
-<div class="row-fluid"> 
-	<div class="span1"> 
-		<%= link_to edit_evaluation_path(@evaluation), role: 'button' do %>
-		  <h5 title="Editar"><i class="icon-pencil"></i></h5>
-		<% end %>		
-  </div>
-	<div class="span1"> 
-		<%= link_to print_evaluation_path(@evaluation), role: 'button' do %>
-		  <h5 title="Editar"><i class="icon-print"></i></h5>
-		<% end %>			
-	</div>
-</div>
 
 <h4 class="text-info text-center">Avaliação Física</h4>
 <hr>
@@ -57,8 +45,7 @@
 		<td colspan='3'>
 			<strong>Avaliador:</strong> <%= @evaluation.evaluator %> 
 		</td>
-	</tr>	
-	
+	</tr>		
 </table>
 
 <h4 class="text-info text-center">Questionario PAR Q </h4>
@@ -658,4 +645,3 @@
 	</tr>
 	
 </table>
-	

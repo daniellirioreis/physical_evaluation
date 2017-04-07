@@ -1,6 +1,6 @@
 
 class EvaluationsController < ApplicationController
-  before_action :set_evaluation, only: [:show, :edit, :update, :destroy, :send_email]
+  before_action :set_evaluation, only: [:show, :edit, :update, :destroy, :send_email, :print]
 
   respond_to :html
 
@@ -62,11 +62,13 @@ class EvaluationsController < ApplicationController
       else
         flash[:warning] = 'Data início não pode ficar em branco.'      
       end
-    end
-    
+    end    
+  end
+
+  def print
   end
   
-
+  
   def update      
     @evaluation.update(evaluation_params)
     respond_with(@evaluation)
