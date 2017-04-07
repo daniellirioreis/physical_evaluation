@@ -1,0 +1,161 @@
+<h4><%= @student %></h4>
+<h4>Evolução Física</h4>
+<br>
+
+<table class="table table-bordered">
+	<tr>
+		<td>
+		</td>
+		<%@evaluations.each do |e| %>
+			<td>
+				<h5 class='text-success'><%= l e.evaluation_date %></h5>
+			</td>		
+		<% end %>
+		<td>
+			Resultado
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			Peso
+		</td>
+		<%@evaluations.each do |e| %>
+			<td>
+				<%= e.ccorp_peso %>
+				<% if e.evaluation_previous.present? %>
+					<% if e.ccorp_peso > e.evaluation_previous.ccorp_peso %>
+						<p class="text-error"><i class="icon-circle-arrow-up"></i></p>
+					<% else %>
+						<p class="text-success"><i class="icon-circle-arrow-down"></i></p>						
+					<% end %>					
+				<% end %>
+			</td>		
+		<% end %>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Quadril
+		</td>
+		<%@evaluations.each do |e| %>
+			<td>
+					<%= e.quadril %>
+					<% if e.evaluation_previous.present? %>
+						<% if e.quadril > e.evaluation_previous.quadril %>
+							<p class="text-error"><i class="icon-circle-arrow-up"></i></p>
+						<% else %>
+							<p class="text-success"><i class="icon-circle-arrow-down"></i></p>						
+						<% end %>
+					<% end %>
+			</td>		
+		<% end %>		
+		<td>
+		</td>		
+	</tr>
+	<tr>
+		<td>
+			Cintura
+		</td>
+		<%@evaluations.each do |e| %>
+		<td>
+				<%= e.cintura %>
+				<% if e.evaluation_previous.present? %>
+					<% if e.cintura > e.evaluation_previous.cintura %>
+						<p class="text-error"><i class="icon-circle-arrow-up"></i></p>
+					<% else %>
+						<p class="text-success"><i class="icon-circle-arrow-down"></i></p>						
+					<% end %>
+				<% end %>
+		</td>		
+		<% end %>		
+		<td>
+		</td>		
+	</tr>
+	<tr>
+		<td>
+			Tórax
+		</td>
+		<%@evaluations.each do |e| %>
+			<td>
+				<%= e.torax %>
+			</td>		
+		<% end %>		
+		<td>
+		</td>		
+	</tr>
+	<tr>
+		<td>
+			Ombro
+		</td>
+		<%@evaluations.each do |e| %>
+			<td>
+				<%= e.ombro %>				
+			</td>		
+		<% end %>
+		<td>
+		</td>		
+	</tr>
+	<tr>
+		<td>
+			Pescoço
+		</td>
+		<%@evaluations.each do |e| %>
+			<td>
+				<%= e.pescoco %>
+			</td>		
+		<% end %>
+		<td>
+		</td>		
+	</tr>		
+	<tr>
+		<td>
+			IMC
+		</td>
+		<%@evaluations.each do |e| %>
+			<td>
+				<%= e.imc %>
+			</td>		
+		<% end %>
+		<td>
+		</td>		
+	</tr>		
+	<tr>
+		<td>
+			PGC	
+		</td>
+		<%@evaluations.each do |e| %>
+			<td>
+				<%= e.gordura %>							
+			</td>		
+		<% end %>
+		<td>
+		</td>		
+	</tr>		
+	<tr>
+		<td>
+			RCQ	
+		</td>
+		<%@evaluations.each do |e| %>
+			<td>
+				<%= e.relacao_cintura_quadril %>							
+			</td>		
+		<% end %>
+		<td>
+		</td>		
+	</tr>		
+	<tr>
+		<td>
+			TMB				
+		</td>
+		<%@evaluations.each do |e| %>
+			<td>
+				<%= e.tmb %>							
+			</td>		
+		<% end %>
+		<td>
+		</td>		
+	</tr>		
+	
+</table>

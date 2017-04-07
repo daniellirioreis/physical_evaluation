@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_student, only: [:show, :edit, :update, :destroy, :evolution]
 
   autocomplete :student, :name, :display_value => :name, :extra_data => [:phone, :birth_date, :email] do |items|
     respond_to do |format|
@@ -40,6 +40,10 @@ class StudentsController < ApplicationController
   def destroy
     @student.destroy
     respond_with(@student)
+  end
+  
+  def evolution
+    @evaluations = @student.evaluations.sorted
   end
 
   private

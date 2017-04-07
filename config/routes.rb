@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :evaluations do 
   	get :send_email,  :on => :member
   	get :search, :on => :collection
-  	get :print, :on => :member		
+  	get :print, :on => :member
   end
 
   resources :evaluators do
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   
   resources :students do 
   	get :autocomplete_student_name, :on => :collection
+  	get :evolution, :on => :member
   end
   
   resources :exercises
