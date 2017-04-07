@@ -34,9 +34,11 @@ class ApplicationController < ActionController::Base
 
   def define_layout
     if user_signed_in?
+      if params[:action] == "print"
+        "print"
+      end      
     else
       'login'
     end 
-
   end
 end

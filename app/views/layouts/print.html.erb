@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta content="Portrait" name="pdfkit-orientation" />
+    <%= stylesheet_link_tag "print", :media => "all" %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/head_report' %>
+  </head>
+    <body style="position: relative; top: 1px;" backgroud="white">
+    <div class="page-header">
+    <div>
+    <div>
+        <%= yield %>
+    </div>
+    <p>
+    </div>
+    </div>
+    <div id="footer">
+  </body>
+</html>

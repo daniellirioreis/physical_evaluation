@@ -1,0 +1,19 @@
+/*
+ *= require bootstrap
+ *= require font-awesome
+ *= require jquery.easy-pie-chart
+ *= require_self
+ *= require autocomplete
+ *= require bootstrap-datepicker3
+ *= require jquery-ui/datepicker
+ */
+
+
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
