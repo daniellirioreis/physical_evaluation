@@ -33,9 +33,11 @@
           <% end %>
         </td>
         <td>
-          <%= link_to coach, method: :delete, data:{confirm: 'Confirma exclusão ?'}, role: 'button' do %>
-            <h5 title="Apagar"><i class="icon-trash"></i></h5>
-          <% end %>              
+					<% if coach.trainings.empty? %>
+	          <%= link_to coach, method: :delete, data:{confirm: 'Confirma exclusão ?'}, role: 'button' do %>
+	            <h5 title="Apagar"><i class="icon-trash"></i></h5>
+	          <% end %>              
+					<% end %>
         </td>
         <td>
           <%= link_to coach, role: 'button' do %>
