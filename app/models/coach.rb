@@ -1,5 +1,6 @@
 class Coach < ActiveRecord::Base
   has_one :user	, dependent: :destroy
+  has_many :trainings
 	validates :name, :email, presence: true
 	validates :name, :email, :cpf, uniqueness: true
 	
