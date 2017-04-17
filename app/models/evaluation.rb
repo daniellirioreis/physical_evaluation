@@ -7,7 +7,7 @@ class Evaluation < ActiveRecord::Base
   belongs_to :company
   belongs_to :evaluation_previous, :class_name => "Evaluation", :foreign_key => "evaluation_previous_id"
 
-	has_enumeration_for :protocol, with: Protocol
+	has_enumeration_for :protocol, with: Protocol, :create_helpers => true, :create_scopes => true
   
   mount_uploader :front_photo,FrontPhotoUploader
   mount_uploader :side_photo, SidePhotoUploader
@@ -45,13 +45,66 @@ class Evaluation < ActiveRecord::Base
   
   
   def gordura
+    idade = student.age[:ano].to_i
     unless imc.nil?    
-      peso_libra = ccorp_peso * 2.20462262
-      item2 = (peso_libra * 1.082) + 94.42
-      circunferencia_cintura = cintura * 0.393700787
-      massa_magra = item2 - (circunferencia_cintura * 4.15)
-      #gorduracorporal = ((peso_libra - massa_magra) * 100) / peso_libra
-      (((peso_libra - massa_magra) * 100) / peso_libra).round(2)
+      #Bioimpedância
+      if bio?
+        peso_libra = ccorp_peso * 2.20462262
+        item2 = (peso_libra * 1.082) + 94.42
+        circunferencia_cintura = cintura * 0.393700787
+        massa_magra = item2 - (circunferencia_cintura * 4.15)
+        #gorduracorporal = ((peso_libra - massa_magra) * 100) / peso_libra
+       gordura = (((peso_libra - massa_magra) * 100) / peso_libra).round(2)
+      end
+      #Protocolo de Pollock: Três Dobras Cutâneas (Tríceps+ Supra-ilíaca+ Coxa).
+      if jp3?
+        
+        soma_3_medidas = ccorp_tricipital + ccorp_supraIliaca + ccorp_coxa
+        soma_medidas_ao_quadrado = soma_3_medidas * soma_3_medidas
+        
+        if student.male?
+          densidade_corporal =  (1.0994921 - (0.0009929 * soma_3_medidas) + (0.0000023 * soma_medidas_ao_quadrado) - (0.0001393 * idade))  
+          gordura = (((4.95 / densidade_corporal) - 4.5) * 100).round(3)          
+        end
+
+        if student.female?
+          densidade_corporal =  (1.10938 - (0.0008267 * soma_3_medidas) + (0.0000016 * soma_medidas_ao_quadrado) - (0.0002574 * idade))  
+          gordura = (((4.95 / densidade_corporal) - 4.5) * 100).round(3)          
+        end        
+      end
+      #Protocolo de Pollock: Quatro Dobras Cutâneas (abdómen, tríceps, coxa e suprailíaco)
+      if jp4?
+        soma_4_medidas = ccorp_abdominal + ccorp_tricipital + ccorp_supraIliaca + ccorp_coxa
+        soma_medidas_ao_quadrado = soma_4_medidas * soma_4_medidas        
+        
+        if student.male?
+          densidade_corporal = ((0.29288 * soma_4_medidas ) - (0.0005 * soma_medidas_ao_quadrado) + (0.15845 * idade) - 5.76377)
+          gordura = (((4.95 / densidade_corporal) - 4.5) * 100).round(3)                    
+        end
+        if student.female?
+          densidade_corporal = ((0.29669 * soma_medidas_ao_quadrado) -  (0.00043 * soma_medidas_ao_quadrado) + (0.02963 * idade) + 1.4072)
+          gordura = (((4.95 / densidade_corporal) - 4.5) * 100).round(3)                              
+        end
+      end
+      #Protocolo de Pollock: Sete Dobras Cutâneas (Tríceps+ Subescapular+Supra-ilíaca+Abdominal+Axilar Medial+Peito+Coxa).
+      if jp7?
+        soma_7_medidas = ccorp_abdominal + ccorp_tricipital + ccorp_supraIliaca + ccorp_coxa + ccorp_subescapular + ccorp_peitoral + ccorp_axilarmedia
+        soma_medidas_ao_quadrado = soma_7_medidas * soma_7_medidas
+
+        soma_3_medidas = ccorp_tricipital + ccorp_supraIliaca + ccorp_coxa
+        soma_3_medidas_ao_quadrado = soma_3_medidas * soma_3_medidas
+        
+        if student.male?
+          densidade_corporal = (1.112 - (0.00043499 * soma_7_medidas ) + (0.00000055 * soma_3_medidas_ao_quadrado) - (0.00012882 * idade))
+          gordura = (((4.95 / densidade_corporal) - 4.5) * 100).round(3)                                        
+        end
+        if student.female?
+          densidade_corporal = (1.097 - (0.0004697 * soma_7_medidas ) + (0.00000056  * soma_3_medidas_ao_quadrado) - (0.00012828 * idade))
+          gordura = (((4.95 / densidade_corporal) - 4.5) * 100).round(3)                                                  
+        end        
+      end
+
+      return gordura      
     end
   end
   

@@ -12,7 +12,7 @@ class Student < ActiveRecord::Base
 	validates_date :birth_date, :before => :today
 
 	has_enumeration_for :state, with: State
-	has_enumeration_for :gender, with: Gender, create_helpers: true
+	has_enumeration_for :gender, with: Gender, :create_helpers => true, :create_scopes => true
 
 	after_save :create_user
 
