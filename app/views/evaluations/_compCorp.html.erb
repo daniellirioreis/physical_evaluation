@@ -1,56 +1,53 @@
 <div class="row-fluid">
   <div class="span6">
-	  <fieldset>
-       <legend> Medidas </legend>
-       <div class="row-fluid"> 
-          <div class="span4"> 
-          <%= f.input :ccorp_peso, as: :string, input_html: { class: 'span4 float_peso' } %>
-          </div>
-          <div class="span6"> 
-          <%= f.input :ccorp_altura, as: :string, input_html: { class: 'span3 float_altura' } %>
-          </div>
-       </div>   
-    </fieldset>  
+		<%= f.input :protocol, collection: Protocol , input_html: {class: 'span6'} %>							
 	</div>
 	<div class="span6">
 		 <fieldset>
-        <legend> Dobras Cutâneas </legend>
-        <div class="row-fluid"> 
-           <div class="span4"> 
-              <%= f.input :ccorp_subescapular, as: :string, input_html: { class: 'span3 ' } %>
-           </div>
-           
-           <div class="span4"> 
-              <%= f.input :ccorp_abdominal, as: :string, input_html: { class: 'span3' } %>
-           </div>
-           
-           <div class="span4"> 
-              <%= f.input :ccorp_tricipital, as: :string, input_html: { class: 'span3' } %>
-           </div>
-        </div>
-        <div class="row-fluid"> 
-           <div class="span4"> 
-              <%= f.input :ccorp_coxa, as: :string, input_html: { class: 'span3' } %>
-           </div>
-        
-           <div class="span4"> 
-              <%= f.input :ccorp_peitoral, as: :string, input_html: { class: 'span3' } %>
-           </div>
-        
-           <div class="span4"> 
-              <%= f.input :ccorp_supraIliaca, as: :string, input_html: { class: 'span3' } %>
-           </div>
-        </div>   
-        <div class="row-fluid"> 
-           <div class="span4"> 
-              <%= f.input :ccorp_axilarmedia, as: :string, input_html: { class: 'span3' } %>
-           </div>
-        </div>   
+        <legend> Dobras Cutâneas </legend>				
+				<div class="row-fluid div_3_dobras <% if  @evaluation.protocol != 2  and  @evaluation.protocol != 0 and  @evaluation.protocol != 1 and @evaluation.protocol != 4 %>hidden<%end%> "> 
+					 <div class="span4"> 
+				      <%= f.input :ccorp_tricipital, as: :string, input_html: { class: 'span3' } %>
+				   </div>
+					 <div class="span4"> 
+				      <%= f.input :ccorp_supraIliaca, as: :string, input_html: { class: 'span3' } %>
+				   </div>
+				   <div class="span4"> 
+				      <%= f.input :ccorp_coxa, as: :string, input_html: { class: 'span3' } %>
+				   </div>				  
+				</div>
+				<div class="row-fluid div_4_dobras <% if  @evaluation.protocol != 2  and  @evaluation.protocol != 0 and @evaluation.protocol != 4 %>hidden<%end%>"> 
+					<div class="span4"> 
+						<%= f.input :ccorp_abdominal, as: :string, input_html: { class: 'span3' } %>
+					</div>			   
+				</div>
+				<div class="row-fluid div_7_dobras <% if  @evaluation.protocol != 0 and @evaluation.protocol != 4 %>hidden<%end%>"> 
+					<div class="span4"> 
+						<%= f.input :ccorp_subescapular, as: :string, input_html: { class: 'span3 ' } %>
+					</div>
+
+					<div class="span4"> 
+						<%= f.input :ccorp_peitoral, as: :string, input_html: { class: 'span3' } %>
+					</div>
+					<div class="span4"> 
+						<%= f.input :ccorp_axilarmedia, as: :string, input_html: { class: 'span3' } %>
+					</div>			   
+				</div>
     </fieldset>    
 	</div>
   <div class="row-fluid"> 
 	  <div class="span6"> 
-				<%= f.input :protocol, collection: Protocol , input_html: {class: 'span6'} %>						
+		  <fieldset>
+	       <legend> Medidas </legend>
+	       <div class="row-fluid"> 
+	          <div class="span4"> 
+	          <%= f.input :ccorp_peso, as: :string, input_html: { class: 'span4 float_peso' } %>
+	          </div>
+	          <div class="span6"> 
+	          <%= f.input :ccorp_altura, as: :string, input_html: { class: 'span3 float_altura' } %>
+	          </div>
+	       </div>   
+	    </fieldset>  
 		</div>				
 		<div class="span6"> 
 			<fieldset>

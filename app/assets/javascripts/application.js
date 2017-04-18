@@ -138,3 +138,52 @@ jQuery(function($){
 	
 });
 
+
+jQuery(function($){
+	$("#evaluation_protocol").on("change", function(e) {
+    var selectedValue = $(this).val();
+
+	if (selectedValue == "1"){
+		$( ".div_3_dobras" ).removeClass( "hidden" );
+		$( ".div_4_dobras" ).addClass( "hidden" );
+		$( ".div_7_dobras" ).addClass( "hidden" );
+		
+		$( "#evaluation_ccorp_abdominal" ).val("");			
+
+		$( "#evaluation_ccorp_subescapular" ).val("");			
+		$( "#evaluation_ccorp_peitoral" ).val("");			
+		$( "#evaluation_ccorp_axilarmedia" ).val("");			
+	}
+	
+	if (selectedValue == "2"){
+		$( ".div_3_dobras" ).removeClass( "hidden" );		
+		$( ".div_4_dobras" ).removeClass( "hidden" );
+		$( ".div_7_dobras" ).addClass( "hidden" );	
+
+		$( "#evaluation_ccorp_subescapular" ).val("");			
+		$( "#evaluation_ccorp_peitoral" ).val("");			
+		$( "#evaluation_ccorp_axilarmedia" ).val("");			
+	
+			
+	}
+	
+	if (selectedValue == "0"){
+		$( ".div_7_dobras" ).removeClass( "hidden" );				
+		$( ".div_4_dobras" ).removeClass( "hidden" );
+		$( ".div_3_dobras" ).removeClass( "hidden" );
+		
+	}
+	
+	if (selectedValue == "4"){
+		$( ".div_7_dobras" ).removeClass( "hidden" );				
+		$( ".div_4_dobras" ).removeClass( "hidden" );
+		$( ".div_3_dobras" ).removeClass( "hidden" );
+		
+	}
+	
+
+	});
+	
+});
+
+
