@@ -60,7 +60,7 @@ class Training < ActiveRecord::Base
       wd = wd  + " Sexta "
     end
     if sabado
-      wd = wd  + " Sabado "
+      wd = wd  + " Sábado "
     end
     if domingo
       wd = wd  + " Domingo "
