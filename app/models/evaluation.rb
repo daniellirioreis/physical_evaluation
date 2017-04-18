@@ -19,6 +19,8 @@ class Evaluation < ActiveRecord::Base
   validates_date :end_date, after: :evaluation_date, :after_message => "Data de vencimento não pode ser menor ou igual que data da avaliação"
   
   validate :validar_evaluation_amn_dor
+
+  validate :validar_campos_protocolo
   
   delegate :age, to: :student, prefix: true
   
@@ -630,6 +632,57 @@ class Evaluation < ActiveRecord::Base
   def validar_evaluation_amn_dor
       errors.add(:amn_dor, "não pode ficar em branco") if amn_limitacao? && amn_dor.empty?
   end
-  
-  
+
+  def validar_campos_protocolo
+    if jp7?
+       if ccorp_abdominal.nil?  
+         errors.add(:ccorp_abdominal, "não pode ficar em branco")
+       end
+       if ccorp_tricipital.nil? 
+         errors.add(:ccorp_tricipital, "não pode ficar em branco")
+       end
+       if ccorp_supraIliaca.nil? 
+         errors.add(:ccorp_supraIliaca, "não pode ficar em branco")         
+       end
+       if ccorp_coxa.nil?
+         errors.add(:ccorp_coxa, "não pode ficar em branco")         
+       end
+       if ccorp_subescapular.nil?
+         errors.add(:ccorp_subescapular, "não pode ficar em branco")         
+       end
+       if ccorp_peitoral.nil?
+         errors.add(:ccorp_peitoral, "não pode ficar em branco")         
+       end
+       if ccorp_axilarmedia.nil?
+         errors.add(:ccorp_axilarmedia, "não pode ficar em branco")         
+       end
+    end
+
+    if jp4?
+      if ccorp_tricipital.nil? 
+        errors.add(:ccorp_tricipital, "não pode ficar em branco")
+      end
+      if ccorp_supraIliaca.nil? 
+        errors.add(:ccorp_supraIliaca, "não pode ficar em branco")         
+      end
+      if ccorp_coxa.nil?
+        errors.add(:ccorp_coxa, "não pode ficar em branco")         
+      end
+      if ccorp_abdominal.nil?  
+        errors.add(:ccorp_abdominal, "não pode ficar em branco")
+      end          
+    end
+    
+    if jp3?
+      if ccorp_tricipital.nil? 
+        errors.add(:ccorp_tricipital, "não pode ficar em branco")
+      end
+      if ccorp_supraIliaca.nil? 
+        errors.add(:ccorp_supraIliaca, "não pode ficar em branco")         
+      end
+      if ccorp_coxa.nil?
+        errors.add(:ccorp_coxa, "não pode ficar em branco")         
+      end      
+    end
+  end
 end
