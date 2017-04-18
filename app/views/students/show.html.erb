@@ -4,7 +4,7 @@
   <p>
     <strong>Nome:</strong>
     <%= @student.name %><br>
-    <strong>Data de Nascimento:</strong> <%= l @student.birth_date%>
+    <strong>Data de Nascimento:</strong> <%= l @student.birth_date%> / <%= @student.age[:ano]%> anos
   </p>
 </fieldset>
 
@@ -27,9 +27,7 @@
     <strong>Celular:</strong>
     <%= @student.cell_phone %>
   </p>
-  <p>
-    <strong>Idade: </strong><%= @student.age[:ano]%>
-  </p>
+
 </fieldset>
 <h4 align="center">Treinos</h4>
 <%= render "trainings"%>
