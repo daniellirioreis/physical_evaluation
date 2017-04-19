@@ -2,7 +2,6 @@
   <thead>
     <th>Data Início</th>
 		<th> Dia da Semana</th>
-    <th>Aluno</th>
     <th>Descrição</th>
 		<th></th>
   </thead>
@@ -10,7 +9,6 @@
     <tr>
       <td><%= l t.date_start unless t.date_start.nil? %></td>
 			<td> <%= t.string_week_day %></td>
-      <td><%= t.student %></td>
       <td><%= t.name%></td>
 			<td>
 				<a class="btn btn-primary" role="button" data-toggle="collapse" href="#exercise_trainings_<%= t.id%>" aria-expanded="false" aria-controls="collapseExample">
