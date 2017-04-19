@@ -1,0 +1,65 @@
+<h4 class= "text-success">Exercícios Realizados</h4>	
+<table class="table">
+<% @exercise_dones.sort_by(&:created_at).group_by(&:date).each do |created_at, exercise_dones| %>
+	<tr>
+    <td>	<h5 class= "text-success"><%=  l created_at , format: :long 	%></h5></td>
+		<td width= "5%">
+			<a class="btn btn-primary" role="button" data-toggle="collapse" href="#exercise_trainings_<%=created_at%>" aria-expanded="false" aria-controls="collapseExample">
+			  Exercícios
+			</a>
+		</td>
+   </tr>
+	 <tr>
+			<td colspan= "2">					
+				<div class="collapse" id="exercise_trainings_<%= created_at %>">
+				  <div class="well">
+						<table class="table table-striped table-bordered">
+							<tr>
+								<th width= "2%">
+									Hora
+								</th>									
+								<th>
+									Exercício
+								</th>
+								<th width= "5%">
+									Series
+								</th>			
+								<th width= "11%">
+									Nº Repetições
+								</th>
+								<th width= "5%">
+									Esforço
+								</th>
+								<th width= "5%">
+									Descanso
+								</th>			
+							</tr>
+							<% exercise_dones.each do |ed| %>			
+								<tr>
+									<td>
+										<%= ed.created_at.strftime("%H:%M") %>
+									</td>										
+									<td>
+										<%= ed.exercise_training %>
+									</td>
+									<td>
+										<%= ed.exercise_training.series %>
+									</th>			
+									<td>
+										<%= ed.exercise_training.repetitions %>
+									</td>
+									<td>
+										<%= ed.exercise_training.effort %>
+									</td>
+									<td>
+										<%= ed.exercise_training.descanso %>
+									</td>			
+								</tr>
+							<% end %>
+						</table>
+					</div>
+				</div>
+			</td>
+	 </tr>
+<% end %>
+</table>

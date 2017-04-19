@@ -1,10 +1,14 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy, :evolution]
+  before_action :set_student, only: [:show, :edit, :update, :destroy, :evolution, :exercise_dones]
 
   autocomplete :student, :name, :display_value => :name, :extra_data => [:phone, :birth_date, :email] do |items|
     respond_to do |format|
      format.json { render :json => @items }
     end
+  end
+  
+  def exercise_dones
+    @exercise_dones = ExerciseDone.by_student_id(@student.id)
   end
 
   def index

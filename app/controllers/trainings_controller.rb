@@ -8,7 +8,8 @@ class TrainingsController < ApplicationController
     respond_with(@trainings)
   end
 
-  def show
+  def show    
+    @exercise_dones = ExerciseDone.by_training_id(@training.id)    
     respond_with(@training)
   end
 

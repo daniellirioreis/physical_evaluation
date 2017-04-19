@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407172918) do
+ActiveRecord::Schema.define(version: 20170418155505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,6 +178,16 @@ ActiveRecord::Schema.define(version: 20170407172918) do
     t.string   "crefito"
   end
 
+  create_table "exercise_dones", force: :cascade do |t|
+    t.integer  "exercise_training_id"
+    t.date     "date"
+    t.boolean  "done"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "exercise_dones", ["exercise_training_id"], name: "index_exercise_dones_on_exercise_training_id", using: :btree
+
   create_table "exercise_trainings", force: :cascade do |t|
     t.integer  "exercise_id"
     t.integer  "training_id"
@@ -267,6 +277,7 @@ ActiveRecord::Schema.define(version: 20170407172918) do
   add_foreign_key "evaluations", "companies"
   add_foreign_key "evaluations", "evaluators"
   add_foreign_key "evaluations", "students"
+  add_foreign_key "exercise_dones", "exercise_trainings"
   add_foreign_key "exercise_trainings", "exercises"
   add_foreign_key "exercise_trainings", "trainings"
   add_foreign_key "trainings", "coaches"

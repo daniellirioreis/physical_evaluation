@@ -33,7 +33,7 @@ pt-BR:
     formats:
       default: ! '%d/%m/%Y'
       long: ! '%d de %B de %Y %A'
-      short: ! '%d de %B'
+      short: '%H:%M'      
     month_names:
     -
     - Janeiro

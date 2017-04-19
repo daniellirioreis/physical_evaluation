@@ -8,5 +8,4 @@
 		<li role="presentation"  class="<% if  params[:controller] == "trainings"%>active<%end%>"><a href="<%= trainings_path%>"><h4 title="Treino" class="text-error"><i class="icon-fire"></i></h4></a></li>
 		<li role="presentation"  class="<% if  params[:action] == "search" && params[:controller] == "evaluations"%>active<%end%>"><a href="<%= search_evaluations_path(search: false)%>"><h4 title="Pesquisa avançada" class=""><i class="icon-filter"></i></h4></a></li>		
 		<li role="presentation"  class="<% if  params[:controller] == "companies"%>active<%end%>"><a href="<%= edit_company_path(current_company)%>"><h4 title="Treino" class="text-success"><i class="icon-wrench"></i></h4></a></li>
-
 </ul>
