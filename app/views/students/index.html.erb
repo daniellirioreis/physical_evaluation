@@ -37,11 +37,6 @@
           <% end %>
         </td>
         <td>
-          <%= link_to student, method: :delete, data:{confirm: 'Ao excluido este aluno, você removerá todos os os procedimentos feitos para esse aluno, confirma exclusão ? '}, role: 'button' do %>
-            <h5 title="Apagar"><i class="icon-trash"></i></h5>
-          <% end %>              
-        </td>
-        <td>
           <%= link_to student, role: 'button' do %>
             <h5 title="Informações"><i class="icon-info"></i></h5>
           <% end %>
@@ -53,9 +48,14 @@
 				</td>
 				<td>
 					<%= link_to exercise_dones_student_path(student), role: 'button' do %>
-            <h5 title="Evolução Física"><i class="icon-fire"></i></h5>
+            <h5 title="Exercícios Realizados"><i class="icon-fire"></i></h5>
           <% end %>          
-				</td>				
+				</td>
+				<td>
+          <%= link_to student, method: :delete, data:{confirm: 'Ao excluido este aluno, você removerá todos os os procedimentos feitos para esse aluno, confirma exclusão ? '}, role: 'button' do %>
+            <h5 title="Apagar"><i class="icon-trash"></i></h5>
+          <% end %>              
+        </td>        	
       </tr>
     <% end %>
   </tbody>
