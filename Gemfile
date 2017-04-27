@@ -29,4 +29,6 @@ gem 'bootstrap-datepicker-rails'
 gem 'validates_timeliness'
 gem "carrierwave"
 gem 'jquery-ui-rails'
+gem "google_visualr", ">= 2.5"
 gem 'rails_12factor', group: :production
+

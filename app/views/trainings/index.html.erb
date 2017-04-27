@@ -19,7 +19,8 @@
     <th>Descrição</th>
     <th colspan="3" width="5%"></th>
   </thead>
-  <% @trainings.each do |t| %>
+  <% @trainings.sorted.each do |t| %>
+
     <tr>
       <td><%= l t.date_start unless t.date_start.nil? %></td>
 			<td> <%= t.string_week_day %></td>
