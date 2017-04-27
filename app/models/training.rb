@@ -13,6 +13,9 @@ class Training < ActiveRecord::Base
   
   scope :by_week_day, lambda { |wd| where("trainings.week_day = ?", wd) }
   
+  scope :sorted, -> { order(:student_id) }
+	
+  
   def wdays
     wd = []
     if segunda
