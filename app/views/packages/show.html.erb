@@ -1,0 +1,44 @@
+<p>
+  <strong>Nome:</strong>
+  <%= @package.name %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @package.description %>
+</p>
+<h5 class="text-info text-center">Produtos</h5>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th width="10%">Valor</th>
+    <tr>
+  <thead>
+  <tbody>
+    <% @package.item_packages.each do |i| %>
+			<tr>
+				<td>
+					<%= i %>
+				</td>
+				<td>
+					<%= i.product.description %>
+				</td>
+				<td>
+					<%= number_to_currency(i.price, precision: 2) %>
+				</td>					
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<p class='text-right'>
+	<strong>Valor Pacote: </strong><%= number_to_currency(@package.price, precision: 2) %>
+</p>
+</tr>
+
+
+<div class="form-actions">
+		<%= link_to 'Editar', edit_package_path(@package), class: :btn %> 
+		<%= link_to 'Voltar', packages_path , class: :btn %>	
+</div>

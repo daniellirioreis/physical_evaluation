@@ -1,0 +1,11 @@
+pt-BR:
+  title:
+  activerecord:
+    models:
+      package:
+        one: "Pacote"
+        many: "Pacotes"
+    attributes:
+      package:
+        name: "Nome"
+        description: 'Descrição'

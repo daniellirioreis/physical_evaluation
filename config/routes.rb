@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :packages
   resources :products
   resources :companies
   resources :coaches do 

@@ -1,0 +1,9 @@
+<div id="item_packages">
+  <%= f.simple_fields_for :item_packages do |e| %>
+    <%= render "item_package_fields", :f => e %>
+  <% end %>
+</div>
+<div>
+  <%= link_to_add_association 'Adicionar produto', f, :item_packages, :class => "btn btn-default" %>
+</div>
+<br>

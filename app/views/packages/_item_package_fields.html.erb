@@ -1,0 +1,9 @@
+<div class="nested-fields">
+	<div class="row-fluid">
+					<%= f.input :product_id, collection: Product.sorted.map{|e|[e.to_string, e.id]},label: 'Produto', input_html: {class: 'span10'}%>
+					<%= f.input :price, as: :string, label:'Preço', input_html: {class: 'span3'}%>
+					 <%= link_to_remove_association "", f, :class => "icon-trash" %>
+				  
+	</div>
+	<hr>
+</div>
