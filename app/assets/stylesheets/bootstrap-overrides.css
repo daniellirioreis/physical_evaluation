@@ -322,7 +322,7 @@ textarea::-webkit-input-placeholder {
 }
 .table-hover tbody tr:hover > td,
 .table-hover tbody tr:hover > th {
-  background-color: #FFE1FF;
+  background-color: #ccc;
 }
 .table th.sortable {
   cursor: pointer;

@@ -24,6 +24,12 @@
   cursor: pointer;
 }
 
+.div_scroll {
+      width: 100%;
+      height: 200px;
+      overflow: scroll; /* showing scrollbars */
+}
+
 #div_small{
   margin: 0 10px 0 0;
   padding: 0;

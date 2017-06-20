@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_id: 
+  package_id: 
+  done: false
+  price: 1.5
+  type_sale: 1
+  discount: 1
+  installment: 1
+
+two:
+  student_id: 
+  package_id: 
+  done: false
+  price: 1.5
+  type_sale: 1
+  discount: 1
+  installment: 1

@@ -21,7 +21,7 @@
     <% @products.sorted.each do |product| %>
       <tr>
         <td><%= product.name %></td>
-        <td><%= product.value_default %></td>
+        <td><%=  number_to_currency(product.value_default, precision: 2)  %></td>
         <td><%= product.description %></td>
 				<td>
           <%= link_to edit_product_path(product), role: 'button' do %>

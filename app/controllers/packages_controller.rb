@@ -3,6 +3,12 @@ class PackagesController < ApplicationController
 
   respond_to :html
 
+  autocomplete :package, :name, :display_value => :name, :extra_data => [:name] do |items|
+    respond_to do |format|
+     format.json { render :json => @items }
+    end
+  end
+
   def index
     @packages = Package.all
     respond_with(@packages)

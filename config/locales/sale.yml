@@ -1,0 +1,16 @@
+pt-BR:
+  title:
+  activerecord:
+    models:
+      sale:
+        one: "Venda"
+        many: "Vendas"
+    attributes:
+      sale:
+        student_id: "Aluno"
+        student_name: 'Aluno'
+        package_id: 'Pacote'
+        package_name: 'Pacote'
+        type_sale: 'Tipo venda'
+        discount: 'Desconto(%)'
+        installment: 'Quantidade de Parcelas'

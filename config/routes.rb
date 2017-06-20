@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
+
+  resources :sales do 
+    get :generate, :on => :member  	
+  end
+
+  resources :installments  do 
+    get :done, :on => :member  	
+  end
+
+  resources :packages do 
+    get :autocomplete_package_name, :on => :collection  	    
+  end
   
-  resources :packages
   resources :products
   resources :companies
   resources :coaches do 

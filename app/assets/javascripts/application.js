@@ -186,4 +186,24 @@ jQuery(function($){
 	
 });
 
+jQuery(function($){
+	$("#sale_type_sale").on("change", function(e) {
+    	var selectedValue = $(this).val();
+		container1 = $('.div_discount');
+		container2 = $('.div_installment');
+		
+		if (selectedValue == "0"){
+			container1.removeClass( "hidden" );
+			container2.addClass( "hidden" );			
+			$( "#sale_installment" ).val("");			
+						
+		}else{
+			container2.removeClass( "hidden" );
+			container1.addClass( "hidden" );
+			$( "#sale_discount" ).val("");			
+		}		
+	});
+	
+});
+
 

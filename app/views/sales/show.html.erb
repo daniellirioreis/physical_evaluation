@@ -1,0 +1,99 @@
+<div class="well well-small">
+	<p>
+	  <strong>Aluno:</strong>
+	  <%= @sale.student %>
+	</p>
+</div>
+
+<div class="well well-small">
+	<p>
+	  <strong>Pacote:</strong>
+	  <%= @sale.package %>
+	</p>	
+	<p>
+	  <strong> Valor pacote:</strong>
+		<%= number_to_currency(@sale.package.price, precision: 2) %></p>
+	</p>	
+</div>
+<div class="well well-small">
+	<p>
+	  <strong>Valor da venda:</strong>
+	<%= number_to_currency(@sale.price, precision: 2) %>
+	</p>
+	<p>
+	  <strong>Tipo de venda:</strong>
+	  <%= @sale.type_sale_humanize %>
+	</p>
+
+	<p>
+	  <strong>Desconto:</strong>
+	  <%= @sale.discount.to_i %> %
+	</p>
+<% if @sale.installment %>
+	<p>
+	  <strong>Quantidade Parcelas:</strong>
+	  <%= @sale.installment %>
+	</p>
+<% end %>
+ <p>
+	<strong>Situação: </strong> 	
+	<% if @sale.status == 0 %>
+		<span class="label label-info">Aberta</span>	
+	<%else%>
+		<span class="label label-success">Fechada</span>		
+	<% end %>
+</p>
+</div>
+<% if @sale.installment? %>
+<table class="table">
+  <thead>
+    <tr>
+      <th width="2%" >Nº</th>
+      <th>Valor</th>
+      <th width="2%">Pago</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sale.installments.sorted.each do |i| %>
+		<tr class="<%if i.done %>success<% end %>">
+			<td>
+				<%= i.number %>
+			</td>
+			<td>
+				<%= number_to_currency(i.price, precision: 2) %>
+			</td>			
+			<td>
+				<%= link_to done_installment_path(i), role: 'button' do %>
+          <h5 title="Editar"><i class="icon<%if i.done %>-ok<% else %>-remove<%end%>"></i></h5>
+        <% end %>        
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Valor Pago</th>
+      <th>Valor Restante</th>
+    </tr>
+  </thead>
+  <tbody>
+	<tr>
+		<td><%= number_to_currency(@sale.value_installments_paid, precision: 2) %></td>
+		<td><%= number_to_currency(@sale.value_installments_not_paid, precision: 2) %></td>
+	</tr>
+</table>
+<% end %>
+
+
+
+<% unless @sale.done?%>
+	<%= link_to 'Editar', edit_sale_path(@sale), class: "btn btn-info" %> 
+	<% if @sale.installment? %>
+		<%= link_to "Deseja finalizar a venda e gerar os parcelamentos?", generate_sale_path(@sale), class: "btn btn-success" %> 		
+	<% else %>
+		<%= link_to "Deseja finalizar a venda e gerar o desconto?", generate_sale_path(@sale), class: "btn btn-success" %> 		
+	<% end %>	
+<% end %>
+<%= link_to 'Listagem vendas', sales_path, class: :btn %>

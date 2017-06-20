@@ -7,4 +7,7 @@ class Package < ActiveRecord::Base
   def price
     item_packages.sum(:price)
   end
+  def to_s
+    name
+  end
 end

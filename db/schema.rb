@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608154720) do
+ActiveRecord::Schema.define(version: 20170608225601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -212,6 +212,17 @@ ActiveRecord::Schema.define(version: 20170608154720) do
     t.string   "musculo"
   end
 
+  create_table "installments", force: :cascade do |t|
+    t.integer  "sale_id"
+    t.float    "price"
+    t.boolean  "done"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "number"
+  end
+
+  add_index "installments", ["sale_id"], name: "index_installments_on_sale_id", using: :btree
+
   create_table "item_packages", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "package_id"
@@ -237,6 +248,21 @@ ActiveRecord::Schema.define(version: 20170608154720) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  create_table "sales", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "package_id"
+    t.boolean  "done"
+    t.float    "price"
+    t.integer  "type_sale"
+    t.integer  "discount"
+    t.integer  "installment"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "sales", ["package_id"], name: "index_sales_on_package_id", using: :btree
+  add_index "sales", ["student_id"], name: "index_sales_on_student_id", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.string   "name",           limit: 60
@@ -306,8 +332,11 @@ ActiveRecord::Schema.define(version: 20170608154720) do
   add_foreign_key "exercise_dones", "exercise_trainings"
   add_foreign_key "exercise_trainings", "exercises"
   add_foreign_key "exercise_trainings", "trainings"
+  add_foreign_key "installments", "sales"
   add_foreign_key "item_packages", "packages"
   add_foreign_key "item_packages", "products"
+  add_foreign_key "sales", "packages"
+  add_foreign_key "sales", "students"
   add_foreign_key "trainings", "coaches"
   add_foreign_key "trainings", "students"
   add_foreign_key "users", "coaches"
